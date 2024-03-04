@@ -25,8 +25,8 @@ route::post('/', [calculate_controller::class, 'store'])->name('store');
 route::get('/login', [calculate_controller::class, 'login'])->name('login');
 
 route::post('/login', [calculate_controller::class, 'logincheck'])->name('logincheck');
-Route::group(['middleware' =>['web', 'checkuser']], function(){
+//Route::group(['middleware' =>['web', 'checkuser']], function(){
     route::get('/dashboard/{id}', [calculate_controller::class, 'dashboard'])->name('dashboard');
-});
+//});
 route::get('/logout', [calculate_controller::class, 'logout'])->name('logout');
 
