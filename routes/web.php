@@ -17,4 +17,16 @@ use App\Http\Controllers\calculate_controller;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-route::get('index', [calculate_controller::class, 'index']);
+
+route::get('index/{id}', [calculate_controller::class, 'index'])->name('index');
+route::post('index', [calculate_controller::class, 'calculate'])->name('cal');
+route::get('/', [calculate_controller::class, 'signup']);
+route::post('/', [calculate_controller::class, 'store'])->name('store');
+route::get('/login', [calculate_controller::class, 'login'])->name('login');
+
+route::post('/login', [calculate_controller::class, 'logincheck'])->name('logincheck');
+Route::group(['middleware' =>['web', 'checkuser']], function(){
+    route::get('/dashboard/{id}', [calculate_controller::class, 'dashboard'])->name('dashboard');
+});
+route::get('/logout', [calculate_controller::class, 'logout'])->name('logout');
+
