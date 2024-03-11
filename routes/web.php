@@ -25,6 +25,7 @@ route::post('/', [calculate_controller::class, 'store'])->name('store');
 route::get('/login', [calculate_controller::class, 'login'])->name('login');
 
 route::post('/login', [calculate_controller::class, 'logincheck'])->name('logincheck');
+<<<<<<< HEAD
 Route::group(['middleware' =>['web', 'checkuser']], function(){
     route::get('/dashboard/{id}', [calculate_controller::class, 'dashboard'])->name('dashboard');
 });
@@ -38,3 +39,10 @@ route::get('/bendetail', [calculate_controller::class, 'bendetail'])->name('bend
 
 route::post('/bendetail', [BeneficiaryController::class, 'benstore'])->name('benstore');
 
+=======
+//Route::group(['middleware' =>['web', 'checkuser']], function(){
+    route::get('/dashboard/{id}', [calculate_controller::class, 'dashboard'])->name('dashboard');
+//});
+route::get('/logout', [calculate_controller::class, 'logout'])->name('logout');
+
+>>>>>>> a7cb6910be5f53456e4911ca904e852d6abc7a53
