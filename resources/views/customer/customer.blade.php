@@ -1,4 +1,4 @@
-@extends('header')
+@extends('layout')
 
 @section('content')
     <div class="content-body">
@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $customer)
+                        @foreach ($customer as $customer)
                             <tr>
                                 <td><input type="checkbox" name=""></td>
                                 <td>{{ $customer->id }}</td>

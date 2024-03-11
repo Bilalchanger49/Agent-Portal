@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\calculate_controller;
+use App\users;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,24 +26,24 @@ route::post('/', [calculate_controller::class, 'store'])->name('store');
 route::get('/login', [calculate_controller::class, 'login'])->name('login');
 
 route::post('/login', [calculate_controller::class, 'logincheck'])->name('logincheck');
-<<<<<<< HEAD
+
 Route::group(['middleware' =>['web', 'checkuser']], function(){
     route::get('/dashboard/{id}', [calculate_controller::class, 'dashboard'])->name('dashboard');
+    route::get('/customers/{id}', [calculate_controller::class, 'customers'])->name('customers');
 });
 route::get('/logout', [calculate_controller::class, 'logout'])->name('logout');
 
-route::get('/send_money/{id}', [calculate_controller::class, 'sendmoney'])->name('sendmoney');
+route::get('/send_money/{id}', function($id){
+    $data = users::find($id);
+    //$amount = amount::all();
+    //$bene = beneficiary::all();
+    return view('Transaction.send_money', compact('data'));
+});
+// route::get('/send_money/{id}', [calculate_controller::class, 'sendmoney'])->name('sendmoney');
 
 route::post('/send_money', [calculate_controller::class, 'amount_store'])->name('amount');
 
-route::get('/bendetail', [calculate_controller::class, 'bendetail'])->name('bendetail');
+route::get('/bendetail/{id}', [calculate_controller::class, 'bendetail'])->name('bendetail');
 
 route::post('/bendetail', [BeneficiaryController::class, 'benstore'])->name('benstore');
-
-=======
-//Route::group(['middleware' =>['web', 'checkuser']], function(){
-    route::get('/dashboard/{id}', [calculate_controller::class, 'dashboard'])->name('dashboard');
-//});
-route::get('/logout', [calculate_controller::class, 'logout'])->name('logout');
-
->>>>>>> a7cb6910be5f53456e4911ca904e852d6abc7a53
+Route::get('delete/{user_id}', [calculate_controller::class,'delete'])->name('delete');

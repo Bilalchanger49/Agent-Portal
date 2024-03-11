@@ -98,7 +98,7 @@
                  			</div>
                  			<div class="col-md-6">
                  				<div class="mt-3">
-                 					<button class="btn sbm">Submit</button>
+                 					<a href=""><button class="btn sbm">Submit</button></a>
                  				</div>
                  			</div>
                  		</div>

@@ -1,4 +1,4 @@
-@extends('header')
+@extends('layout')
 
 @section('content')
     <div class="container">
