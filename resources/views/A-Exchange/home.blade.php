@@ -216,7 +216,8 @@
                                 <div class="bg-blu">
                                     <h3 class="fs-18 cal-txt">Calculator</h3>
                                 </div>
-                                <form class="cal-pd">
+                                <form method="post" action="{{route('sendmoney', ['id' => $data->id])}}" class="cal-pd">
+                                    @csrf
                                     <div class="col-md-12 col-sm-6 col-xs-12">
                                         <div class="form-group mt-4" style="width: 77vh;">
                                             <label>You Send</label>
@@ -340,7 +341,7 @@
                                         </div>
                                     </div>
                                     <div class="btn-area mt-40">
-                                        <a href="/send_money/{{$data->id}}" class="cmn-btn w-100">Get Started</a>
+                                        <button class="cmn-btn w-100">Get Started</button>
                                         {{-- <input type="submit"> --}}
                                     </div>
                                 </form>
@@ -427,15 +428,20 @@
                                                     </div>
                                                 </th>
                                                 <th>Transaction #</th>
-                                                <th>Remitter</th>
-                                                <th>Beneficiary</th>
-                                                <th>Delivery</th>
-                                                <th>Payout</th>
+                                                <th>Name</th>
+                                                <th>Beneficiary Name</th>
+                                                <th>Beneficiary Phone</th>
+                                                <th>Bank Name</th>
+                                                <th>Account Number</th>
                                                 <th>Amount</th>
-                                                <th>Status</th>
+                                                <th>BIC Code</th>
+                                                <th>Relation</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
+                                        @foreach ($transaction as $item)
+
+
                                         <tbody>
                                             <tr>
                                                 <td>
@@ -444,15 +450,15 @@
                                                         <label class="custom-control-label" for="customCheckBox2"></label>
                                                     </div>
                                                 </td>
-                                                <td>788262000000</td>
+                                                <td>{{$item->id}}</td>
                                                 <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
-                                                <td>Uzair Awan</td>
-                                                <td>Cash Pickup</td>
-                                                <td>Bank Transfer</td>
-                                                <td>
-                                                United Bank Limited<br>
-                                                <span class="f-12">UBL0000000000</span>
-                                                </td>
+                                                <td>{{$data->name}}</td>
+                                                <td>{{$item->bef_name}}</td>
+                                                <td>{{$item->bef_phone}}</td>
+                                                <td>{{$item->bef_account_name}}</td>
+                                                <td>{{$item->bef_amount}}</td>
+                                                <td>{{$item->bef_bic_code}}</td>
+                                                <td>{{$item->bef_relation}}</td>
                                                 <td><div class="d-flex align-items-center"><i class="fas fa-circle text-success me-1"></i> Paid</div></td>
                                                 <td>
                                                     <div class="d-flex">
@@ -461,127 +467,9 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                                    </div>
-                                                </td>
-                                                <td>788262000000</td>
-                                                <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
-                                                <td>Uzair Awan</td>
-                                                <td>Cash Pickup</td>
-                                                <td>Bank Transfer</td>
-                                                <td>
-                                                United Bank Limited<br>
-                                                <span class="f-12">UBL0000000000</span>
-                                                </td>
-                                                <td><div class="d-flex align-items-center"><i class="fas fa-circle text-danger me-1"></i> Canceled</div></td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="javascript:void(0);" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                                    </div>
-                                                </td>
-                                                <td>788262000000</td>
-                                                <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
-                                                <td>Uzair Awan</td>
-                                                <td>Cash Pickup</td>
-                                                <td>Bank Transfer</td>
-                                                <td>
-                                                United Bank Limited<br>
-                                                <span class="f-12">UBL0000000000</span>
-                                                </td>
-                                                <td><div class="d-flex align-items-center"><i class="fas fa-circle text-warning me-1"></i> Pending</div></td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="javascript:void(0);" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                                    </div>
-                                                </td>
-                                                <td>788262000000</td>
-                                                <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
-                                                <td>Uzair Awan</td>
-                                                <td>Cash Pickup</td>
-                                                <td>Bank Transfer</td>
-                                                <td>
-                                                United Bank Limited<br>
-                                                <span class="f-12">UBL0000000000</span>
-                                                </td>
-                                                <td><div class="d-flex align-items-center"><i class="fas fa-circle text-success me-1"></i> Paid</div></td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="javascript:void(0);" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                                    </div>
-                                                </td>
-                                                <td>788262000000</td>
-                                                <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
-                                                <td>Uzair Awan</td>
-                                                <td>Cash Pickup</td>
-                                                <td>Bank Transfer</td>
-                                                <td>
-                                                United Bank Limited<br>
-                                                <span class="f-12">UBL0000000000</span>
-                                                </td>
-                                                <td><div class="d-flex align-items-center"><i class="fas fa-circle text-danger me-1"></i> Canceled</div></td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="javascript:void(0);" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                                    </div>
-                                                </td>
-                                                <td>788262000000</td>
-                                                <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
-                                                <td>Uzair Awan</td>
-                                                <td>Cash Pickup</td>
-                                                <td>Bank Transfer</td>
-                                                <td>
-                                                United Bank Limited<br>
-                                                <span class="f-12">UBL0000000000</span>
-                                                </td>
-                                                <td><div class="d-flex align-items-center"><i class="fas fa-circle text-warning me-1"></i> Pending</div></td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <a href="javascript:void(0);" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>

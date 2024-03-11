@@ -15,14 +15,13 @@ class CreateBeneficiariesTable extends Migration
     {
         Schema::create('beneficiaries', function (Blueprint $table) {
             $table->id();
-            $table->string('befname');
-            $table->string('befcountry');
-            $table->string('befphone');
-            $table->string('befbank');
-            $table->string('befacc');
-            $table->string('befbic');
-            $table->string('befemail');
-            $table->string('befamount');
+            $table->string('bef_name');
+            $table->string('bef_bic_code');
+            $table->string('bef_phone');
+            $table->string('bef_relation');
+            $table->string('bef_account_name');
+            $table->string('bef_account_number');
+            $table->string('bef_amount');
             $table->timestamps();
         });
     }

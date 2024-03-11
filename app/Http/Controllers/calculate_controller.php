@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\User;
+use App\beneficiaries;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -91,7 +92,8 @@ class calculate_controller extends Controller
 
     public function dashboard($id){
         $data = User::find($id);
-        return view('A-Exchange.home', compact('data'));
+        $transaction = beneficiaries::all();
+        return view('A-Exchange.home', compact('data', 'transaction'));
         // return view('A-Exchange.home');
 
     }
@@ -103,25 +105,43 @@ class calculate_controller extends Controller
 
 
 
-    public function sendmoney($id){
+    public function sendmoney(Request $request, $id){
         $data = User::find($id);
-        //$amount = amount::all();
-        //$bene = beneficiary::all();
-        return view('Transaction.send_money', compact('data'));
-
+        $money = $request->validate([
+            'sender_money' => 'required|numeric|min:0.01'
+        ]);
+        return view('Transaction.send_money', compact('data'))->with('money', $money);
     }
 
-    public function amount_store(Request $request){
-        $request->validate([
-            'sender_money'=>'required',
+    public function amount_store(Request $request, $id, $amount){
+         //dd('hello');
+
+       $request->validate([
+            'bef_name' =>'required',
+            'bef_bic_code'=>'required',
+            'bef_phone'=>'required',
+            'bef_relation'=>'required',
+            'bef_account_name' =>'required',
+            'bef_account_number'=>'required'
         ]);
-        $amount = $request->sender_money;
-        return redirect('bendetail')->with('amount', $amount);
+        // dd('hello');
+        $beneficiaries = new beneficiaries;
+        $beneficiaries->bef_name = $request->bef_name;
+        $beneficiaries->bef_bic_code = $request->bef_bic_code;
+        $beneficiaries->bef_phone = $request->bef_phone;
+        $beneficiaries->bef_relation = $request->bef_relation;
+        $beneficiaries->bef_account_name = $request->bef_account_name;
+        $beneficiaries->bef_account_number = $request->bef_account_number;
+        $beneficiaries->bef_amount =$amount;
+      // dd($beneficiaries);
+        $beneficiaries->save();
+
+        return redirect('/dashboard/'.$id);
     }
     public function bendetail($id){
         $data = User::find($id);
         //$amount = amount::all();
-        //$bene = beneficiary::all();
+        //$bene = beneficiaries::all();
         return view('Transaction.Beneficiary', compact('data'));
     }
     public function delete(User $user_id){

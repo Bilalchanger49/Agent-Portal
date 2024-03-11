@@ -46,7 +46,10 @@
 					</p>
 				</div>
 				<div class="mt-5">
-					<form method="php">
+					<form method="post" action="{{ route('storeamount', ['id' => $data->id, 'amount' => $money['sender_money']]) }}">
+
+
+
 						<label for="country">Country</label><br>
                  		<select class="cntry">
                  			<option>Bangladesh</option>
@@ -57,22 +60,22 @@
                  		</select><br>
                  		<div class="row">
                  			<div class="col-md-6">
-                 				<label class="mt-3" for="name">First Name</label>
-                 				<input style="width:100%;" type="name" name="Email" class="form-control" placeholder="Enter First Name" required>
+                 				<label class="mt-3" for="bef_name">Full Name</label>
+                 				<input style="width:100%;" type="name" name="bef_name" class="form-control" placeholder="Enter First Name" required>
                  			</div>
                  			<div class="col-md-6">
-                 				<label class="mt-3" for="name">Beneficiary BIC Code</label>
-                 				<input style="width:100%;" type="name" name="Email" class="form-control" placeholder="Enter BIC Code" required>
+                 				<label class="mt-3" for="bef_bic_code">Beneficiary BIC Code</label>
+                 				<input style="width:100%;" type="number" name="bef_bic_code" class="form-control" placeholder="Enter BIC Code" required>
                  			</div>
                  		</div>
                  		<div class="row">
                  			<div class="col-md-6">
-                 				<label class="mt-3" for="name">Phone Number</label>
-                 				<input style="width:100%;" type="number" name="phonenumber" class="form-control" placeholder="Enter Phone Number" required>
+                 				<label class="mt-3" for="bef_phone">Phone Number</label>
+                 				<input style="width:100%;" type="number" name="bef_phone" class="form-control" placeholder="Enter Phone Number" required>
                  			</div>
                  			<div class="col-md-6">
-                 				<label for="country" style="margin-top: 16px;">Relationship</label><br>
-                 		<select style=" width: 100%; height: 38px; border: 1px solid #d7cbcb; border-radius: 5px; ">
+                 				<label for="bef_relation" style="margin-top: 16px;">Relationship</label><br>
+                 		<select name="bef_relation" style=" width: 100%; height: 38px; border: 1px solid #d7cbcb; border-radius: 5px;">
                  			<option>Brother</option>
                  			<option>Sister</option>
                  			<option>Mother</option>
@@ -82,12 +85,12 @@
                  		</div>
                  		<div class="row">
                  			<div class="col-md-6">
-                 				<label class="mt-3" for="name">Beneficiary Account Name</label>
-                 				<input style="width:100%;" type="name" name="name" class="form-control" placeholder="Enter Bank Name" required>
+                 				<label class="mt-3" for="bef_account_name">Beneficiary Account Name</label>
+                 				<input style="width:100%;" type="name" name="bef_account_name" class="form-control" placeholder="Enter Bank Name" required>
                  			</div>
                  			<div class="col-md-6">
-                 				<label class="mt-3" for="name">Beneficiary Account Number</label>
-                 				<input style="width:100%;" type="number" name="number" class="form-control" placeholder="Enter Account Number" required>
+                 				<label class="mt-3" for="bef_account_number">Beneficiary Account Number</label>
+                 				<input style="width:100%;" type="number" name="bef_account_number" class="form-control" placeholder="Enter Account Number" required>
                  			</div>
                  		</div>
                  		<div class="row">
@@ -96,9 +99,10 @@
                  					<button class="btn cnl">Cancel</button>
                  				</div>
                  			</div>
+                             @csrf
                  			<div class="col-md-6">
                  				<div class="mt-3">
-                 					<a href=""><button class="btn sbm">Submit</button></a>
+                 					<button class="btn sbm">Submit</button>
                  				</div>
                  			</div>
                  		</div>
@@ -122,7 +126,7 @@
 						</div>
 						<div class="col-md-6">
 							<div>
-								<p style="text-align: end;color:#0c266c;"><b> 50 GBP</b></p>
+								<p name='money' style="text-align: end;color:#0c266c;"><b>{{ $money['sender_money'] }}</b></p>
 							</div>
 						</div>
 					</div>

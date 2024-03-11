@@ -33,15 +33,11 @@ Route::group(['middleware' =>['web', 'checkuser']], function(){
 });
 route::get('/logout', [calculate_controller::class, 'logout'])->name('logout');
 
-route::get('/send_money/{id}', function($id){
-    $data = users::find($id);
-    //$amount = amount::all();
-    //$bene = beneficiary::all();
-    return view('Transaction.send_money', compact('data'));
-});
-// route::get('/send_money/{id}', [calculate_controller::class, 'sendmoney'])->name('sendmoney');
 
-route::post('/send_money', [calculate_controller::class, 'amount_store'])->name('amount');
+route::post('/send_money/{id}', [calculate_controller::class, 'sendmoney'])->name('sendmoney');
+route::post('/sendmoney/{id}/{amount}', [calculate_controller::class, 'amount_store'])->name('storeamount');
+
+// route::post('/send_money/{sender_money}', [calculate_controller::class, 'amount_store'])->name('storeamount');
 
 route::get('/bendetail/{id}', [calculate_controller::class, 'bendetail'])->name('bendetail');
 
