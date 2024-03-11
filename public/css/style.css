@@ -8,7 +8,6 @@
 
 
     Table of Sass Contents
-
     1. Abstracts
         _bs-custom
         _inheritance
@@ -10657,10 +10656,10 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
     .header {
       padding-left: 5rem; } }
 
-[data-header-position="fixed"] {
+/* [data-header-position="fixed"] {
   --dz-header-pos: fixed; }
   [data-header-position="fixed"] .content-body {
-    padding-top: var(--dz-header-height); }
+    padding-top: var(--dz-header-height); } */
 
 /* pulse in CSS */
 .pulse-css {
