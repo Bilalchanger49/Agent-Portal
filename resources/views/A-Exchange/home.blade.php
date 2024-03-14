@@ -451,19 +451,29 @@
                                                     </div>
                                                 </td>
                                                 <td>{{$item->id}}</td>
-                                                <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td>
+                                                {{-- <td><div class="d-flex align-items-center"><img src="/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="/"> <span class="w-space-no"> Ehsan Ali</span></div></td> --}}
                                                 <td>{{$data->name}}</td>
                                                 <td>{{$item->bef_name}}</td>
                                                 <td>{{$item->bef_phone}}</td>
                                                 <td>{{$item->bef_account_name}}</td>
+                                                <td>{{$item->bef_account_number}}</td>
                                                 <td>{{$item->bef_amount}}</td>
                                                 <td>{{$item->bef_bic_code}}</td>
                                                 <td>{{$item->bef_relation}}</td>
-                                                <td><div class="d-flex align-items-center"><i class="fas fa-circle text-success me-1"></i> Paid</div></td>
+                                                @if ($item->action == 'Completed')
+                                                    <td><div class="d-flex align-items-center"><i class="fas fa-circle text-success me-1"></i> {{$item->action}}</div></td>
+
+                                                @elseif($item->action == 'Cancelled')
+                                                    <td><div class="d-flex align-items-center"><i class="fas fa-circle text-danger me-1"></i> {{$item->action}}</div></td>
+
+                                                @else
+                                                    <td><div class="d-flex align-items-center"><i class="fas fa-circle text-warning me-1"></i> {{$item->action}}</div></td>
+
+                                                @endif
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a href="javascript:void(0);" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
+                                                        <a href="{{route('transedit', ['tranid' => $item->id, 'id' => $data->id])}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                        <a href="{{route('transdelete', ['tranid' => $item->id])}}" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

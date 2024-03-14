@@ -22,6 +22,7 @@ class CreateBeneficiariesTable extends Migration
             $table->string('bef_account_name');
             $table->string('bef_account_number');
             $table->string('bef_amount');
+            $table->string('action')->default('pending');
             $table->timestamps();
         });
     }

@@ -151,5 +151,43 @@ class calculate_controller extends Controller
     }
 
 
+    public function transdelete(beneficiaries $tranid){
+        $tranid->delete();
+        return redirect()->back();
+    }
+
+    public function transedit($id, $tranid ){
+        $data = beneficiaries::find($tranid);
+        $user = User::find($id);
+        return view('Transaction.edittrans', compact('data', 'user'));
+    }
+
+    public function transeditstore(Request $request, $id, $tranid ){
+        $request->validate([
+            'befname' =>'required',
+            'befbic'=>'required',
+            'befphone'=>'required',
+            'befbank' =>'required',
+            'befacc'=>'required',
+        ]);
+        $data = beneficiaries::find($tranid);
+        // dd($data);
+
+        $data->bef_name = $request->befname;
+        $data->bef_bic_code = $request->befbic;
+        $data->bef_phone = $request->befphone;
+        $data->bef_account_name = $request->befbank;
+        $data->bef_account_number = $request->befacc;
+        $data->bef_amount = $request->befamount;
+        $data->action = $request->action;
+
+        $data->save();
+
+        return redirect('/dashboard/'.$id);
+    }
 }
+
+
+
+
 

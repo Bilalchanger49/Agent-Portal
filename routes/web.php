@@ -42,4 +42,8 @@ route::post('/sendmoney/{id}/{amount}', [calculate_controller::class, 'amount_st
 route::get('/bendetail/{id}', [calculate_controller::class, 'bendetail'])->name('bendetail');
 
 route::post('/bendetail', [BeneficiaryController::class, 'benstore'])->name('benstore');
+// Route::get('delete/{user_id}', [calculate_controller::class,'delete'])->name('delete');
 Route::get('delete/{user_id}', [calculate_controller::class,'delete'])->name('delete');
+Route::get('transdelete/{tranid}', [calculate_controller::class,'transdelete'])->name('transdelete');
+Route::get('transedit/{id}{tranid}', [calculate_controller::class,'transedit'])->name('transedit');
+Route::post('transedit/{id}/{tranid}', [calculate_controller::class,'transeditstore'])->name('transeditstore');
